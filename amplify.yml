@@ -17,7 +17,7 @@ backend:
         - go version 2>/dev/null || echo 'Go not installed'
         - node --version  2>/dev/null || echo 'Node.js not installed'
         - echo '---------------------------------------------'
-        - ls -l /usr/lib/jvm/
+        - ls -l /usr/lib/jvm/ 2>/dev/null || echo 'No Java JDKs found'
         - echo '---------------------------------------------'
         - env | sort
         - echo '---------------------------------------------'
