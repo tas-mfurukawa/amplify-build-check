@@ -4,18 +4,18 @@ backend:
     preBuild:
       commands:
         - aws --version
-        - docker --version
-        - docker-compose --version
-        - mvn --version
-        - gradle -v
-        - python -V
-        - python3 -V
-        - java -version
-        - php -v
-        - ruby -v
-        - perl -v
-        - go version
-        - node --version
+        - docker --version 2>/dev/null || echo 'Docker not installed'
+        - docker-compose --version 2>/dev/null || echo 'Docker Compose not installed'
+        - mvn --version 2>/dev/null || echo 'Maven not installed'
+        - gradle -v 2>/dev/null || echo 'Gradle not installed'
+        - python -V 2>/dev/null || echo 'Python not installed'
+        - python3 -V 2>/dev/null || echo 'Python3 not installed'
+        - java -version 2>/dev/null || echo 'Java not installed'
+        - php -v 2>/dev/null || echo 'PHP not installed'
+        - ruby -v 2>/dev/null || echo 'Ruby not installed'
+        - perl -v 2>/dev/null || echo 'Perl not installed'
+        - go version 2>/dev/null || echo 'Go not installed'
+        - node --version  2>/dev/null || echo 'Node.js not installed'
         - echo '---------------------------------------------'
         - ls -l /usr/lib/jvm/
         - echo '---------------------------------------------'
