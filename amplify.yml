@@ -1,0 +1,48 @@
+version: 1
+backend:
+  phases:
+    preBuild:
+      commands:
+        - aws --version
+        - docker --version
+        - docker-compose --version
+        - mvn --version
+        - gradle -v
+        - python -V
+        - python3 -V
+        - java -version
+        - php -v
+        - ruby -v
+        - perl -v
+        - go version
+        - node --version
+        - echo '---------------------------------------------'
+        - ls -l /usr/lib/jvm/
+        - echo '---------------------------------------------'
+        - env | sort
+        - echo '---------------------------------------------'
+        - rpm -qa --qf "%{NAME},%{VERSION}\n" | sort
+        - echo '---------------------------------------------'
+        - for x in ${PATH//:/ }; do ls -1 $x; done | sort | uniq
+        - echo '---------------------------------------------'
+        - rpm -qa --qf "%{NAME},%{VERSION}\n"
+        - alias      
+    build:
+      commands:
+        - '# Execute Amplify CLI with the helper script'
+        - amplifyPush --simple
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - yarn install
+    build:
+      commands:
+        - yarn run build
+  artifacts:
+    baseDirectory: dist
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
